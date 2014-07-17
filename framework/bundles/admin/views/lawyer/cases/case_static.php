@@ -30,7 +30,9 @@
         <span><?php echo $status;  ?></span>
     </div>
 <?php }?>
-  <table id="table_bug_report" class="table table-striped table-bordered table-hover">
+<div class="row-fluid">
+    <div class="span12">
+        <table id="table_bug_report" class="table table-striped table-bordered table-hover">
                 <thead>
                 <tr>
                     <th>Case Name</th>
@@ -105,6 +107,8 @@
  
                 </tbody>
             </table>
+        </div>
+    </div>
             <?php echo $cases->links(); ?>
            
             
