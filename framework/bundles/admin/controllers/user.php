@@ -200,7 +200,12 @@ class Admin_User_Controller extends Admin_Base_Controller {
         $user_detail=(array)Session::get('User_detail');
         $values=Input::all();
         $id=Crypter::decrypt($values['id']);
-        $mail=$values['user_']
+        $mail=$values['user_email'];
+        if(!User::userEmail($id,$mail))
+        {
+            return Redirect::back()
+                    ->with('error','This email already using another user');
+        }
         if(isset($values['exp_date']))
         {
             $exp_date = DateTime::createFromFormat('d/m/Y', $values['exp_date']);

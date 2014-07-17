@@ -15,12 +15,16 @@
 <?php Section::stop();?>
 
 <?php echo Section::start("contentWrapper"); ?>
-<?php $status=Session::get('status');
+<?php $status=Session::get('status'); $error=Session::get('error');
 if(isset($status)){ ?>
-    <div class="alert-success">
+    <div class="alert alert-success">
         <span><?php echo $status; ?></span>
     </div>
-<?php }?>
+<?php }elseif(isset($error)){?>
+<div class="alert alert-danger">
+        <span><?php echo $error; ?></span>
+    </div>
+    <?php } ?>
 <?php Session::put('User_detail',$user);  ?>
     <div>
         <div class="row-fluid">

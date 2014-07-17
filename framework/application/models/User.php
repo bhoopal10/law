@@ -354,5 +354,35 @@ class User extends Eloquent
         return $res;
 
     }
+    public static function userEmail($id,$mail)
+    {
+        $res=DB::table(self::$table)
+            ->where('id','!=',$id)
+            ->where('user_email','=',$mail)
+            ->get();
+        if($res)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+    public static function userUserName($id,$username)
+    {
+        $res=DB::table(self::$table)
+            ->where('id','!=',$id)
+            ->where('username','=',$username)
+            ->get();
+        if($res)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
 
 }
