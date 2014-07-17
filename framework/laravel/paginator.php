@@ -272,10 +272,9 @@ class Paginator {
 	public function next($text = null)
 	{
 		$disabled = function($page, $last) { return $page >= $last; };
-
 		return $this->element(__FUNCTION__, $this->page + 1, $text, $disabled);
 	}
-
+	
 	/**
 	 * Create a chronological pagination element, such as a "previous" or "next" link.
 	 *
@@ -371,7 +370,7 @@ class Paginator {
 	protected function link($page, $text, $class)
 	{
 		$query = '?page='.$page.$this->appendage($this->appends);
-
+		
 		return '<li'.HTML::attributes(array('class' => $class)).'>'. HTML::link(URI::current().$query, $text, array(), Request::secure()).'</li>';
 	}
 

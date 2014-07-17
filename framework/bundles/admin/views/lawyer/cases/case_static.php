@@ -21,7 +21,7 @@
             </h1>
         </div>
     </div>
-<?php $id=Auth::user()->id;$cl=libclient::getclientname(); $user=liblawyer::getlawyer(); ?>
+<?php $id=Auth::user()->id;$cl=libclient::getclientname(); $user=liblawyer::getlawyer(); $selList=libautocomplete::selectList($id); ?>
 <?php $status=Session::get('status'); if($status){  ?>
     <div class=" alert alert-info">
         <button type="button" class="close" data-dismiss="alert">
@@ -32,8 +32,31 @@
 <?php }?>
 <div class="row-fluid">
     <div class="span12">
-        <table id="table_bug_report" class="table table-striped table-bordered table-hover">
-                <thead>
+    <form name="form2" action="" method="get">
+        <select name="case_no" id="case" class="span2" onchange='this.form.submit()'>
+            <option value="">Search By CaseNo</option>
+            <?php if($selList['cases']){ foreach ($selList['cases'] as $value) { ?>
+                    <option value="<?php echo $value->case_id; ?>" <?php echo (Input::old('case_no') == $value->case_id )?'selected':'';?>><?php echo $value->case_no; ?></option>
+                <?php }} ?>
+        </select>
+        <select name="client_id" id="client" class="span2" onchange='this.form.submit()'>
+            <option value="">Search By Client</option>
+                <?php if($selList['client']){ foreach ($selList['client'] as $value) { ?>
+                    <option value="<?php echo $value->client_id; ?>" <?php echo (Input::old('client_id') == $value->client_id )?'selected':'';?> ><?php echo $value->client_name; ?></option>
+                <?php }} ?>
+        </select>
+        <select name="lawyer_id" id="lawyer" class="span2" onchange='this.form.submit()'>
+            <option value="">Search By Lawyer</option>
+            <?php if($selList['lawyer']){ foreach ($selList['lawyer'] as $value) { ?>
+                    <option value="<?php echo $value->id; ?>" <?php echo (Input::old('lawyer_id') == $value->id )?'selected':'';?>><?php echo $value->first_name; ?></option>
+                <?php }} ?>
+        </select>
+        <input type="text" class="span3" name="from_date" id='from' placeholder="From date" <?php echo (Input::old('from_date')?'value="'.Input::old('from_date').'"':''); ?> onchange="this.form.submit();">
+          To
+          <input type="text" class="span3" name="to_date" id="to" placeholder="to Date" <?php echo (Input::old('to_date')?'value="'.Input::old('to_date').'"':''); ?> onchange="this.form.submit()">
+    </form>
+        <table id="table_bug_report" class="table table-striped table-bordered table-hover cf">
+                <thead class="cf">
                 <tr>
                     <th>Case Name</th>
                     <th>Case Number</th>
@@ -109,8 +132,36 @@
             </table>
         </div>
     </div>
-            <?php echo $cases->links(); ?>
-           
+
+<?php echo $cases->links(); ?>
+
+<script type="text/javascript">
+    $(function(){
+
+        $('#client').select2();
+        $('#lawyer').select2();
+        $('#case').select2();
+        $( "#from" ).datepicker({
+        dateFormat: "dd/mm/yy",
+        defaultDate: "+1w",
+        changeMonth: true,
+        changeYear:true,
+        onClose: function( selectedDate ) {
+        $( "#to" ).datepicker( "option", "minDate", selectedDate );
+        }
+        });
+
+        $( "#to" ).datepicker({
+            dateFormat: "dd/mm/yy",
+            defaultDate: "+1w",
+            changeMonth: true,
+            changeYear:true,
+            onClose: function( selectedDate ) {
+            $( "#from" ).datepicker( "option", "maxDate", selectedDate );
+            }
+        });
+    });
+</script>
             
 
 <?php Section::stop(); ?>

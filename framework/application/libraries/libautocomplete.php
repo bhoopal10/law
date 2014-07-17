@@ -22,5 +22,22 @@ class libautocomplete extends Eloquent
 
         return $res;
     }
+    public static function selectList($id)
+    {
+        $clients=DB::table('client')
+            ->where('update_by','=',$id)
+            ->get(array('client_id','client_name'));
+        $lawyers=DB::table('users')
+        ->where('updated_by','=',$id)
+        ->get(array('id','first_name'));
+        $case=DB::table('case')
+        ->where('lawyer_id','=',$id)
+        ->get(array('case_id','case_no'));
+        $tot=array('cases'=>$case,
+                    'client'=>$clients,
+                    'lawyer'=>$lawyers);
+
+        return $tot;
+    }
 
 }

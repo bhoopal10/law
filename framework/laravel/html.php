@@ -152,6 +152,12 @@ class HTML {
 
 		return '<a href="'.$url.'"'.static::attributes($attributes).'>'.static::entities($title).'</a>';
 	}
+	public static function myLink($url, $title = null, $attributes = array(), $https = null)
+	{
+		$url = URL::to($url, $https);
+		if (is_null($title)) $title = $url;
+		return '<a href="">'.static::entities($title).'</a>';
+	}
 
 	/**
 	 * Generate a HTTPS HTML link.

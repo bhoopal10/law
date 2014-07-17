@@ -182,7 +182,7 @@ if(isset($status)){ ?>
         $(function(){
             $('span').tooltip({placement:'bottom'});
             $('#pincode').mask('999999');
-            $('#mobile').mask('9999999999?,9999999999');
+            $('#mobile').mask('9999999999?,9999999999,9999999999,9999999999');
         });
     </script>
     <style type="text/css">

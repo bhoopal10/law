@@ -693,7 +693,7 @@ if(isset($status)){ ?>
                var select=document.getElementById('case_subject');
                var opt=document.createElement('option');
                opt.value=values;
-               opt.innerHTML=values;
+               opt.innerHTML=values;        
                select.appendChild(opt);
                $('#case_subject').select2().select2('val',values);
                $('#new_case_subject').modal('hide');

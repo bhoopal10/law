@@ -168,6 +168,7 @@ Route::group(array('before'=>'lawyer-associate-auth'),function(){
      Route::get('(:bundle)/appointment/view',array('as'=>'ViewAppointment','uses'=>'admin::appointment@ViewAppointment'));  
      Route::get('(:bundle)/appointment/appointment-status/(:all)',array('as'=>'AppointmentStatus','uses'=>'admin::appointment@AppointmentStatus'));
  Route::get('(:bundle)/appointment/delete-appointment/(:all)',array('as'=>'DeleteAppointment','uses'=>'admin::appointment@DeleteAppointment'));
+ Route::get('(:bundle)/select/select-list/(:num)',array('as'=>'selectList','uses'=>'admin::selectlist@selectList'));
 
 });
 Route::group(array('before'=>'lawyers-auth'),function(){

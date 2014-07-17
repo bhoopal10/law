@@ -625,9 +625,50 @@ class Admin_Cases_Controller extends Admin_Base_Controller {
     {
         $stat=($id==2)?"Completed":($id==1?"Processing":"Pending");
         $user_id=Auth::user()->id;
-        $cases=Cases::where('lawyer_id','=',$user_id)
+        $inputs=Input::all();
+        unset($inputs['page']);
+        if($_GET && array_filter($inputs))
+        {
+            Input::flash();
+            $case_id   =$inputs['case_no'];
+            $client_id =$inputs['client_id'];
+            $lawyer_id =$inputs['lawyer_id'];
+            $from      =$inputs['from_date'];
+            $to        =$inputs['to_date'];
+            $from_date =($from)? implode('-',array_reverse(explode('/',$from))):'1970-01-01';
+            $to_date   =($to)?implode('-',array_reverse(explode('/',$to))):'4015-01-01';
+            $sql       ="select * from `case` where lawyer_id = $user_id AND status = $id ";
+            $sql       .=($case_id)?" AND case_id = $case_id":'';
+            $sql       .=($client_id)?" AND client_id = $client_id":'';
+            $sql       .=($lawyer_id)?" AND associate_lawyer LIKE '%$lawyer_id%'":'';
+            $sql       .=" AND date_of_filling BETWEEN '$from_date' AND '$to_date'";
+            $page = Input::get('page', 1);
+            $val=DB::query($sql);
+            $per_page=20;
+            $offset = ($page * $per_page) - $per_page;
+            $total=count($val);
+            $total_page=ceil($total / $per_page);
+            if($page > $total_page or $page < 1)
+            {
+                $page=1;
+            }
+            $val = array_slice($val, $offset, $per_page);
+            // echo $sql."<br>";
+            // echo "<pre>";
+            // print_r($val);
+            // echo $count;
+            // exit;
+            $cases=Paginator::make($val, $total, $per_page);
+            // echo "<pre>";
+            // print_r($cases);exit;
+        }
+        else
+        {
+            $cases=Cases::where('lawyer_id','=',$user_id)
                 ->where('status','=',$id)
                 ->paginate(15);
+        }
+        
         return View::make('admin::lawyer/cases.case_static')
             ->with('cases',$cases)
             ->with('stat_id',$id)
