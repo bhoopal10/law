@@ -1,0 +1,1 @@
+<iframe src="http://docs.google.com/gview?url=http://localhost/chat/ppt.php&embedded=true" style="width:550px; height:450px;" frameborder="0"></iframe>
