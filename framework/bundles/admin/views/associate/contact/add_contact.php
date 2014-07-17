@@ -119,9 +119,18 @@ if(isset($status)){ ?>
         var first_name=document.form1.first_name.value;
         var mobile=document.form1.mobile.value;
         var email=document.form1.email.value;
+        var emails=email.split(',');
         var emailfilter=/^\w+[\+\.\w-]*@([\w-]+\.)*\w+[\w-]*\.([a-z]{2,4}|\d+)$/i;
-        var b=emailfilter.test(email);
-        if(!first_name)
+         var count=emails.length;
+            for(var i=0;i<count;i++)
+            {
+                var b=emailfilter.test(emails[i]);
+                if(b==false)
+                {
+                    alert('Please enter valid email');
+                    return false;
+                }
+            }        if(!first_name)
         {
             alert('Please enter first name');
             document.form1.first_name.focus();
@@ -165,7 +174,7 @@ if(isset($status)){ ?>
     <script type="text/javascript">
 $(function(){
      
-    $('#mobile').mask('9999999999?,9999999999');
+    $('#mobile').mask('9999999999?,9999999999,9999999999,9999999999');
    
 });
 

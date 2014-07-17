@@ -66,7 +66,7 @@ if(isset($status)){ ?>
                         </div>
                     </div>
                 <div class="control-group">
-                    <label class="control-label" for="user_email">Username/Email-Id:<span style="color: red">*</span></label>
+                    <label class="control-label" for="user_email">Email-Id:<span style="color: red">*</span></label>
                     <div class="controls">
                         <input type="text" id="user_email" name="user_email" value="<?php echo $user->user_email;  ?>" />
                     </div>

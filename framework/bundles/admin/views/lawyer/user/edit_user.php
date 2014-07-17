@@ -102,7 +102,7 @@ if(isset($status)){ ?>
 <script>
 $(function(){
             $('#pincode').mask('999999');
-            $('#mobile').mask('9999999999?,9999999999'); 
+            $('#mobile').mask('9999999999?,9999999999,9999999999,9999999999'); 
 });
     function validation()
     {

@@ -103,16 +103,26 @@ if(isset($status)){ ?>
         $(function(){
            $('span').tooltip({placement:'bottom'});
             $('#pincode').mask('999999');
-            $('#mobile').mask('9999999999?,9999999999');
+            $('#mobile').mask('9999999999?,9999999999,9999999999,9999999999');
         });
         function validation()
         {
             var client_name=document.form1.client_name.value;
             var mobile=document.form1.mobile.value;
             var email=document.form1.email.value;
+            var emails=email.split(',');
             var pincode=document.form1.pincode.value;
             var emailfilter=/^\w+[\+\.\w-]*@([\w-]+\.)*\w+[\w-]*\.([a-z]{2,4}|\d+)$/i;
-            var b=emailfilter.test(email);
+            var count=emails.length;
+            for(var i=0;i<count;i++)
+            {
+                var b=emailfilter.test(emails[i]);
+                if(b==false)
+                {
+                    alert('Please enter valid email');
+                    return false;
+                }
+            }
             if(!client_name)
             {
                 alert('Please enter Client name');

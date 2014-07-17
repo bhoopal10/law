@@ -22,7 +22,7 @@ class Admin_Client_Controller extends Admin_Base_Controller {
         $detail=Input::all();
         $data=array('update_by'=>$detail['update_by'],
                     'client_name'=>$detail['client_name'],
-                    'mobile'=>$detail['mobile'],
+                    'mobile'=>rtrim($detail['mobile'],','),
                     'phone'=>$detail['phone'],
                     'email'=>$detail['email'],
                     'address'=>$detail['address'],
@@ -41,7 +41,7 @@ class Admin_Client_Controller extends Admin_Base_Controller {
         $detail=Input::all();
         $data=array('update_by'=>$detail['update_by'],
                     'client_name'=>$detail['client_name'],
-                    'mobile'=>$detail['mobile'],
+                    'mobile'=>rtrim($detail['mobile'],','),
                     'phone'=>$detail['phone'],
                     'email'=>$detail['email'],
                     'address'=>$detail['address'],

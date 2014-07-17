@@ -128,7 +128,7 @@ if(isset($status)){ ?>
         $(function(){
            $('span').tooltip({ placement: 'bottom' });
             $('#pincode').mask('999999');
-            $('#mobile').mask('9999999999?,9999999999');
+            $('#mobile').mask('9999999999?,9999999999,9999999999,9999999999');
         });
         <?php $sub=liblawyer::getlawyer();  ?>
         var s= <?php $subject=array(); foreach($sub as $sub1){ array_push($subject,$sub1->lawyer_subject); } echo json_encode($subject); ?>;

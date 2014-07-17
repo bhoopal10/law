@@ -30,7 +30,7 @@ class User_Controller extends Base_Controller
             'password'=>Hash::make($values['password']),
             'lawyer_id'=>$values['lawyer_id'],
             'lawyer_subject'=>$values['lawyer_subject'],
-            'mobile'=>$values['mobile'],
+            'mobile'=>rtrim($values['mobile'],','),
             'exp_date'=>$exp_date,
             'updated_by'=>1,
             'user_role'=>2,

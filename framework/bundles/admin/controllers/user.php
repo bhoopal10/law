@@ -63,7 +63,7 @@ class Admin_User_Controller extends Admin_Base_Controller {
                 'username'=>$values['username'],
                 'password'=>Hash::make($values['password']),
                 'lawyer_subject'=>$values['lawyer_subject'],
-                'mobile'=>$values['mobile'],
+                'mobile'=>rtrim($values['mobile'],','),
                 'phone'=>$values['phone'],
                 'address'=>$values['address'],
                 'city'=>$values['city'],
@@ -137,7 +137,7 @@ class Admin_User_Controller extends Admin_Base_Controller {
                'password'=>Hash::make($values['password']),
                'lawyer_id'=>$values['lawyer_id'],
                'lawyer_subject'=>$values['lawyer_subject'],
-               'mobile'=>$values['mobile'],
+               'mobile'=>rtrim($values['mobile'],','),
                'phone'=>$values['phone'],
                'address'=>$values['address'],
                'city'=>$values['city'],
@@ -200,38 +200,39 @@ class Admin_User_Controller extends Admin_Base_Controller {
         $user_detail=(array)Session::get('User_detail');
         $values=Input::all();
         $id=Crypter::decrypt($values['id']);
+        $mail=$values['user_']
         if(isset($values['exp_date']))
         {
             $exp_date = DateTime::createFromFormat('d/m/Y', $values['exp_date']);
             $exp_date=$exp_date->format('Y-m-d');
             $data=array(
-                'updated_by'=>Crypter::decrypt($values['user_id']),
-                'first_name'=>$values['first_name'],
-                'last_name'=>$values['last_name'],
-                'user_email'=>$values['user_email'],
-                'exp_date'=>$exp_date,
-                'lawyer_subject'=>$values['lawyer_subject'],
-                'lawyer_id'=>$values['lawyer_id'],
-                'mobile'=>$values['mobile'],
-                'phone'=>$values['phone'],
-                'address'=>$values['address'],
-                'city'=>$values['city'],
-                'pincode'=>$values['pincode']
+                'updated_by'     =>Crypter::decrypt($values['user_id']),
+                'first_name'     =>$values['first_name'],
+                'last_name'      =>$values['last_name'],
+                'user_email'     =>$values['user_email'],
+                'exp_date'       =>$exp_date,
+                'lawyer_subject' =>$values['lawyer_subject'],
+                'lawyer_id'      =>$values['lawyer_id'],
+                'mobile'         =>rtrim($values['mobile'],','),
+                'phone'          =>$values['phone'],
+                'address'        =>$values['address'],
+                'city'           =>$values['city'],
+                'pincode'        =>$values['pincode']
             );
         }
         else{
             $data=array(
-                'updated_by'=>Crypter::decrypt($values['user_id']),
-                'first_name'=>$values['first_name'],
-                'last_name'=>$values['last_name'],
-                'user_email'=>$values['user_email'],
-                'lawyer_subject'=>$values['lawyer_subject'],
-                'lawyer_id'=>$values['lawyer_id'],
-                'mobile'=>$values['mobile'],
-                'phone'=>$values['phone'],
-                'address'=>$values['address'],
-                'city'=>$values['city'],
-                'pincode'=>$values['pincode']
+                'updated_by'     =>Crypter::decrypt($values['user_id']),
+                'first_name'     =>$values['first_name'],
+                'last_name'      =>$values['last_name'],
+                'user_email'     =>$values['user_email'],
+                'lawyer_subject' =>$values['lawyer_subject'],
+                'lawyer_id'      =>$values['lawyer_id'],
+                'mobile'         =>rtrim($values['mobile'],','),
+                'phone'          =>$values['phone'],
+                'address'        =>$values['address'],
+                'city'           =>$values['city'],
+                'pincode'        =>$values['pincode']
             );
         }
         $update=array_diff_assoc($data,$user_detail);
