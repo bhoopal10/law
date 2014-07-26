@@ -1,0 +1,25 @@
+
+body {
+	background:#4d0943;
+}
+.banner {
+	background:url(img/purple/slide_bkg.png);
+}
+.login_area {
+	background:url(img/purple/box_login.png);
+}
+.login_area input[type='submit'] {
+	background: transparent url(img/purple/btn_login.png);
+}
+.login_area input[type='submit']:hover {
+	background: transparent url(img/btn_login_hover.png);
+}
+.box_right_top {
+	background:url(img/purple/box_right_top.png);
+}
+.box_right_middle {
+	background:url(img/purple/box_right_middle.png);
+}
+.box_right_bottom {
+	background:url(img/purple/box_right_bottom.png);
+}

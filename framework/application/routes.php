@@ -39,6 +39,7 @@ Route::post('trail/user-reg',array('as'=>'AddTrailUser','uses'=>'user@AddTrailUs
 Route::get('/test',array('uses'=>'home@test'));
 Route::post('/contactus',array('as'=>'contactUs','uses'=>'home@contactUs'));
     Route::get('test',array('uses'=>'home@Test'));
+    Route::get('/register',array('uses'=>'home@register'));
 
 
 

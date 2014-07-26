@@ -62,37 +62,86 @@ $(document).ready(function () {
       <div class="img_news_slider"></div>
       <div id="slider_area"> <a href="#"> <img src="img/img_slide.png" /> <span> Description for picture </span> </a> <a href="#"> <img src="img/img_slide2.png" /> <span> Description for picture </span> </a> <a href="#"> <img src="img/img_slide3.png" /> <span> Description for picture </span> </a> </div>
     </div>
-    <div class="login_area rights" id="login">
-      <form action="#">
-        <input type="text" value="" />
-        <input type="text" value="" />
-        <input type="submit" value="Login"  />
+    <div class="rights" id="">
+   
+      <form action="#" class="">
+        <input type="hidden" name="user_id" value="<?php echo Crypter::encrypt('1'); ?>" />
+                    <div class="">
+                        <label class="col-sm-5 " for="first_name">First Name: <span style="color: red">*</span></label>
+                        <div class="col-sm-7">
+                            <input type="text" id="first_name" class="" name="first_name" placeholder="First Name"/>
+                        </div>
+                    </div>
+                    <div class="">
+                        <label class="col-sm-5 " for="last_name">Last Name:</label>
+                        <div class="col-sm-7">
+                            <input type="text" id="last_name" class="" name="last_name" placeholder="Last Name"/>
+                        </div>
+                    </div>
+
+                    
+                            <input type="hidden" id="lawyer_subject" class="" name="lawyer_subject" placeholder="Lawyer Subject" />
+                       
+
+                    <div class="">
+                        <label class="col-sm-5 " for="mobile">Mobile:<span style="color: red">*</span></label>
+                        <div class="col-sm-7">
+                            <input type="text" id="mobile" class="" name="mobile" placeholder="Mobile" />
+                        </div>
+                    </div>
+                    <div class="">
+                        <label class="col-sm-5 " for="mobile">Phone:</label>
+                        <div class="col-sm-7">
+                            <input type="text" id="phone" class="" name="phone" placeholder="Phone" />
+                        </div>
+                    </div>
+                    <div class="">
+                        <label class="error col-sm-5 " for="username">Username<span style="color: red">*</span></label>
+                        <div class="col-sm-7">
+                            <input type="text" id="username" name="username" placeholder="UserName"  class=""/>
+                        </div>
+                    </div>
+                    <div class="">
+                        <label class="error col-sm-5  " for="user_email">Email-Id:<span style="color: red">*</span></label>
+                        <div class="col-sm-7">
+                            <input type="text" id="user_email" class="" name="user_email" placeholder="Email ID" />
+                        </div>
+                    </div>
+                    <div class="">
+                        <label class="col-sm-5 " for="address">Address:</label>
+                        <div class="col-sm-7">
+                            <input type="text" id="address" class="" name="address" placeholder="Address"/>
+                        </div>
+                    </div>
+                    <div class="">
+                        <label class="col-sm-5 " for="city">City:</label>
+                        <div class="col-sm-7">
+                            <input type="text" id="city" class="" name="city" placeholder="City"/>
+                        </div>
+                    </div>
+                    <div class="">
+                        <label class="col-sm-5 " for="user_password">Password:<span style="color: red">*</span></label>
+                        <div class="col-sm-7">
+                            <input type="password" id="password" class="" name="password" placeholder="Password"/>
+                        </div>
+                    </div>
+                    <div class="">
+                        <label class="col-sm-5 " for="confirm_password">Confirm Password:<span style="color: red">*</span></label>
+                        <div class="col-sm-7">
+                            <input type="password" id="confirm_password" class="" name="confirm_password" placeholder="Confirm Password"/>
+                        </div>
+                    </div>
         <div class="clear"></div>
-        <ul>
-          <li><a href="#">Forgot Password?</a></li>
-          <li><a href="<?php echo URL::to('/register') ?>">New Account</a></li>
-        </ul>
-        <label>
-          <input type="checkbox" value="stay_signed" name=""/>
-          Stay signed </label>
+        <div class="col-sm-12">
+          <span>Already registered? <a href="<?php echo URL::to('/test') ?>">Login</a></span>
+        </div>
+       <div><button class="btn btn-primary">Register</button></div>
       </form>
     </div>
     
   </div>
 </div>
-<div class="see_it">
-  <div class="see_it_area">
-    <ul>
-      <li>
-        <h2>See it!</h2>
-      </li>
-      <li>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tincidunt odio erat, ut fermentum lacus. Fusce fermentum ligula ac eros</p>
-      </li>
-     
-    </ul>
-  </div>
-</div>
+
 <div id="content">
   <div class="box_right">
     <div class="box_right_top"></div>

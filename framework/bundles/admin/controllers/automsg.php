@@ -80,7 +80,12 @@
                             $mail->setFrom('admin@lawyerzz.in',$lawyer[0]->first_name.''.$lawyer[0]->last_name);
                             $mail->addReplyTo($lawyer[0]->user_email,$lawyer[0]->first_name.''.$lawyer[0]->last_name);
                             // $mail->addAddress('bhoopal10@gmail.com',$lawyer[0]->first_name);
+
                            $mail->addAddress($lawyer[0]->user_email,$lawyer[0]->first_name);
+                            $lMail=explode(',',$lawyer[0]->email);
+                            if($lMail){foreach($lMail as $cliMail){
+                                $mail->addAddress($cliMail,$lawyer[0]->first_name.''.$lawyer[0]->last_name);
+                            }}
                             $mail->Subject =($client)? $client[0]->client_name.'Hearings':'Hearings';
                             $mail->Body=$body;
                             if (!$mail->send()) {
@@ -145,7 +150,11 @@
                             $mail->setFrom('admin@lawyerzz.in',($lawyer)?$lawyer[0]->first_name.''.$lawyer[0]->last_name:'lawyer');
                             $mail->addReplyTo(($lawyer)?$lawyer[0]->user_email:'lawyer@gmail.com',($lawyer)?$lawyer[0]->first_name.''.$lawyer[0]->last_name:'lawyer');
                             // $mail->addAddress('bhoopal10@gmail.com',$client[0]->client_name);
-                           $mail->addAddress($client[0]->email,$client[0]->client_name);
+                            $cMail=explode(',',$client[0]->email);
+                            if($cMail){foreach($cMail as $cliMail){
+                              $mail->addAddress($cliMail,$client[0]->client_name);
+                            }}
+                           
                             $mail->Subject = $client[0]->client_name.'Hearings';
                             $mail->Body=$body;
                             if (!$mail->send()) {

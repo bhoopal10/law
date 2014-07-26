@@ -50,5 +50,9 @@ public $restful=true;
         {
             return View::make('home.test');
         }
+        public function get_register()
+        {
+            return View::make('home.register');
+        }
 
 }

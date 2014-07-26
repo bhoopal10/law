@@ -239,7 +239,7 @@ Route::group(array('before'=>'admin-lawyer-associate-auth'),function(){
     Route::post('(:bundle)/user/setting/upload-image',array('as'=>'UploadImage','uses'=>'admin::user@UploadImage'));
     Route::post('(:bundle)/user/setting/profile-update',array('as'=>'ProfileUpdate','uses'=>'admin::user@ProfileUpdate'));
     Route::post('(:bundle)/user/setting/profile-change-password',array('as'=>'ChangePassword','uses'=>'admin::user@ChangePassword'));
-
+    Route::post('(:bundle)/user/setting/add-email',array('as'=>'AddEmail','uses'=>'admin::user@addEmail'));
 
 });
 

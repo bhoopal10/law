@@ -144,10 +144,10 @@ if(isset($status)){ ?>
                     <div class="hr dashed"></div>
                     <div class="row-fluid">
                         <div class="span4">
-                            <h5>Email</h5>
+                            <h5>Primary Email</h5>
                         </div>
                         <div class="span8">
-                            <h5><b>: <?php echo $profile->user_email; ?></b></h5>
+                            <h5><b>: <?php echo $profile->user_email; ?></b>&nbsp;&nbsp;<a data-toggle='modal' title="Add more email" href="#add-email" ><i class="icon icon-plus-sign"></i></a></h5>
                         </div>
                     </div>
                     <div class="hr dashed"></div>
@@ -169,6 +169,15 @@ if(isset($status)){ ?>
                         </div>
                     </div>
                      <div class="hr dashed"></div>
+                     <div class="row-fluid">
+                        <div class="span4">
+                            <h5>Additional Emails</h5>
+                        </div>
+                        <div class="span8">
+                            <h5><b>: <?php echo $profile->email; ?></b></h5>
+                        </div>
+                    </div>
+                    <div class="hr dashed"></div>
                 </div>
                 <!-- Right Ends -->
             </div>
@@ -285,6 +294,30 @@ if(isset($status)){ ?>
         </form>
     </div>
 </div>
+<!-- Add- Email -->
+<div id="add-email" class="modal hide fade" style="display: none; ">
+    <div class="modal-header">
+        <button class="close" data-dismiss="modal">×</button>
+        <h3>Add Email</h3>
+    </div>
+    <div class="modal-body">
+    <form class="form-horizontal" action="<?php echo URL::to_route('AddEmail') ?>" method="post" onsubmit="return emailValidate()">
+        <div class="control-group">
+            <label class="control-label" for="addEmail">
+                Email(s)
+            </label>
+            <div class="controls">
+                <input type="text" id="addEmail" placeholder="comma(,) seperate for more email" name='email' class="form-control" value="<?php echo $profile->email; ?>" >
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                <button type="submit" class="btn btn-info">Add</button>
+            </div>
+        </div>
+    </form>
+    </div>
+</div>
 <script type="text/javascript">
     $('#tumbnails').on('click',function(){
         $('#image').click();
@@ -330,7 +363,24 @@ $(function(){
                 this.value='';
         }
     };
-    
+     function emailValidate()
+    {
+        var email=$('#addEmail').val();
+        var emails=email.split(',');
+        var count=emails.length;
+        var emailfilter=/^\w+[\+\.\w-]*@([\w-]+\.)*\w+[\w-]*\.([a-z]{2,4}|\d+)$/i;
+        
+        for(var i=0;i<count;i++)
+        {
+            var b=emailfilter.test(emails[i]);
+            if( b == false)
+            {
+                alert('Enter valid Email address');
+                return false;
+            }
+
+        }
+    }
     </script>
     <?php Section::stop();  ?>
 <?php echo render('admin::admin/template.main');  ?>

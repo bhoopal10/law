@@ -912,4 +912,23 @@ class Admin_User_Controller extends Admin_Base_Controller {
             echo $mail->getMessages();
         }
     }
+    public function post_addEmail()
+    {
+        $id=Auth::user()->id;
+        $mail=Input::get('email');
+        $user=DB::table('users')
+                ->where('id','=',$id)
+                ->update(array('email'=>$mail));
+        if($user)
+        {
+            return Redirect::back()
+                    ->with('status','Email added successfully');
+        }
+        else
+        {
+             return Redirect::back()
+                    ->with('error','Email failed to add');
+        }
+
+    }
 }

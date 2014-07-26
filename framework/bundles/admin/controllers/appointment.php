@@ -132,7 +132,14 @@
                     $mail->setFrom($lawyer->user_email,$lawyer->first_name.''.$lawyer->last_name);
                     $mail->addReplyTo($lawyer->user_email,$lawyer->first_name.''.$lawyer->last_name);
                     $mail->addAddress($lawyer->user_email,$lawyer->first_name.''.$lawyer->last_name);
-                    $mail->addAddress($client->email,$client->client_name);
+                    $cMail=explode(',',$client->email);
+                    if($cMail){foreach($cMail as $cliMail){
+                        $mail->addAddress($cliMail,$client->client_name);
+                    }}
+                    $lMail=explode(',',$lawyer->email);
+                    if($lMail){foreach($lMail as $cliMail){
+                        $mail->addAddress($cliMail,$lawyer->first_name.''.$lawyer->last_name);
+                    }}
                      if(isset($values['lawyer']))
                         {
                             foreach($values['lawyer'] as $val)

@@ -15,7 +15,7 @@ return array(
 	*/
 
 
-	'url' => "http://www.mindjinn.com/law/",
+	'url' => "http://localhost/law/",
 
 
 	/*

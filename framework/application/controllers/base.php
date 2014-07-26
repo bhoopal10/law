@@ -6,15 +6,23 @@ class Base_Controller extends Controller {
     public function __construct()
     {
 
-        // Asset::container('header')->add('bootstrap','//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css');
+
+        Asset::container('header')->add('color','css/newtheme/purple.css');
+        Asset::container('header')->add('style','css/newtheme/style.css');
+        // Asset::container('header')->add('style','css/newtheme/styles.css');
+        Asset::container('header')->add('bootstrap','//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css');
         // Asset::container('header')->add('jquery','https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js');
-        Asset::container('header')->add('script','js/javascript.js');
+        Asset::container('header')->add('scripts','css/newtheme/jquery-sezz.js');
+        Asset::container('header')->add('script','css/newtheme/jquery-1.js');
+        Asset::container('header')->add('j-Q','css/newtheme/jquery-parallel.js');
+        Asset::container('header')->add('j-s','css/newtheme/coinslider.js');
+        // Asset::container('header')->add('script','js/javascript.js');
         // Asset::container('header')->add('jbootstrapjs', '//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js','jquery');
 
        // Asset::container('header')->add('font-awesome','http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css');
 
         // Asset::container('footer')->add('the-story','css/bootstrap3/the-story.js');
-        Asset::container('header')->add('story','css/bootstrap3/the-story.css');
+        // Asset::container('header')->add('story','css/bootstrap3/the-story.css');
         // Asset::container('header')->add('p-controls','css/bootstrap3/p-controls.css');
         /* HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries */
 
@@ -28,7 +36,7 @@ class Base_Controller extends Controller {
         /* [endif] */
 /* [if lt IE 9] */
         Asset::container('header')->add('bootstrap','js/jqueryIE9.js');
-        Asset::container('header')->add('bootstrap','css/bootstrap3/style-ie.css');
+        // Asset::container('header')->add('bootstrap','css/bootstrap3/style-ie.css');
         
 /* [endif] */
 

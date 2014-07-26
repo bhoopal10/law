@@ -74,7 +74,7 @@ class Admin_Hearing_Controller extends Admin_Base_Controller {
             $case_data=array('last_hearing_id'=>$res);
             Cases::updateCaseByID($case_data,$case_id);
             $case=Cases::getCaseDetailsByID($case_id);
-            $lawyer=DB::query("SELECT first_name,last_name,username,user_email,mobile,address from users where id= ?",array($data['lawyer_id']));
+            $lawyer=DB::query("SELECT first_name,last_name,username,user_email,mobile,address,email from users where id= ?",array($data['lawyer_id']));
             $client=DB::query("SELECT client_name,mobile,email from client where client_id =?",array($data['client_id']));
             if($lawyer && $client)
             {
@@ -86,8 +86,15 @@ class Admin_Hearing_Controller extends Admin_Base_Controller {
                 $mail->isSendmail();
                 $mail->setFrom($lawyer[0]->user_email,$lawyer[0]->first_name.''.$lawyer[0]->last_name);
                 $mail->addReplyTo($lawyer[0]->user_email,$lawyer[0]->first_name.''.$lawyer[0]->last_name);
-                $mail->addAddress($client[0]->email,$client[0]->client_name);
                 $mail->addAddress($lawyer[0]->user_email,$lawyer[0]->first_name);
+                $cEmail=explode(',',$client[0]->email);
+                if($cEmail){foreach($cEmail as $Mail){
+                     $mail->addAddress($Mail,$client[0]->client_name);
+                }}
+                 $lMail=explode(',',$lawyer[0]->email);
+                    if($lMail){foreach($lMail as $cliMail){
+                        $mail->addAddress($cliMail,$lawyer[0]->first_name.''.$lawyer[0]->last_name);
+                    }}
                 $mail->Subject = $client[0]->client_name.'Hearings';
                 $mail->Body=$body;
                 if (!$mail->send()) {
@@ -201,7 +208,7 @@ class Admin_Hearing_Controller extends Admin_Base_Controller {
             'stage'             =>  $values['stage'],
             // 'docket_no'         =>  $values['docket_no'],
             // 'crime_no'          =>  $values['crime_no'],
-            'doc_no'            =>  $values['doc_no'],
+            'doc_no'            =>  Input::get('doc_no',''),
             'action_plan'       =>  $values['action_plan'],
             'description'       =>  $values['description']
             );
@@ -229,7 +236,7 @@ class Admin_Hearing_Controller extends Admin_Base_Controller {
             'stage'             =>  $values['stage'],
             'docket_no'         =>  $values['docket_no'],
             'crime_no'          =>  $values['crime_no'],
-            'doc_no'            =>  $values['doc_no'],
+            'doc_no'            =>  Input::get('doc_no',''),
             'action_plan'       =>  $values['action_plan'],
             'description'       =>  $values['description']
             );
